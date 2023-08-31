@@ -4,6 +4,9 @@
     height: 100%;
     margin-top: 6rem;
     background-color: var(--primColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .img{
     background-image: url("https://demo.themezy.com/system/resources/demo_themes/000/000/128//images/banner.png");

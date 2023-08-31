@@ -29,12 +29,11 @@ function Home() {
             <div className="home">
                 <div className='img'>
                     <div>
-                        <input type="text"className="searchBox"placeholder='   search by city'value={city}onChange={(e)=>{setCity(e.target.value);}}/>
+                        <input type="text"className="searchBox"placeholder='  search by city'value={city}onChange={(e)=>{setCity(e.target.value);}}/>
                         <a className='searchBtn' onClick={handleClick} >Find</a>
                     </div>
                 </div>
                 <ForeCast foreCast={Object.keys(foreCast).length > 0?foreCast:weather}/>
-                
             </div>
         );
     }else{

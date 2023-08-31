@@ -11,7 +11,6 @@ export default function useGetNews(){
             const country = await resp1.json();
             if(Object.keys(country).length > 0){
                 setCountry(country);
-                console.log(country);
                 const resp = await fetch(`https://newsapi.org/v2/everything?q="${country.countryName}"&sortBy=popularity&apiKey=278890ad57504e20b67f4a46dbe12d55`);
                 const data = await resp.json();
                 data.articles.length = 10;

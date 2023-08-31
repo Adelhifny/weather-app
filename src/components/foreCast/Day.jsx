@@ -2,43 +2,30 @@ import useGetIcon from "../../useGetIcon";
 import umberlla from "../../assets/images/icon-umberella.png"
 import wind from "../../assets/images/icon-wind.png"
 import compass from "../../assets/images/icon-compass.png"
+import Button from "./button";
 
-function Day({foreCastDay,handleClick,num,location}) {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+function Day({foreCastDay}) {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
     return (
-        <div className="day" onClick={()=>{handleClick(num)}}>
-            <div className="head">
-                <span>{days[new Date(foreCastDay.dt_txt).getDay()]}</span>
-                {num == 1 &&<span style={{paddingRight:"1rem"}}>{new Date(foreCastDay.dt_txt).getDate()} {monthNames[new Date(foreCastDay.dt_txt).getMonth()]}</span>}
+        <div className="">
+          <div className="head">
+              <Button render={()=>{
+                return (<>
+                  <img id="prevDay" width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/long-arrow-left.png" alt="long-arrow-left"/>
+                  <p style={{marginLeft:"5px"}}>Prev Day</p>
+                </>);
+              }}/>
+              <h5 style={{color:"gray"}}>{new Date(foreCastDay[foreCastDay.length/2].dt_txt).getDate()} {monthNames[new Date(foreCastDay[foreCastDay.length/2].dt_txt).getMonth()]}</h5>
+              <Button render={()=>{
+                return (<>
+                  <p style={{marginRight:"5px"}}>Next Day</p>
+                  <img id="nextDay" width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/long-arrow-right.png" alt="long-arrow-right"/>
+                </>);
+              }}/>
             </div>
-           <div className={num==1?"body":"body2"}>
-            {num == 1 && <h4 style={{color:"gray"}}>{location.name}</h4>}
-                {num == 1 ? <div className="temp">
-                    <h1>{foreCastDay.main.temp_max}°C</h1>
-                    <img src={useGetIcon(foreCastDay.weather[0].main.toLowerCase())} alt="" width={"90"}/>
-                </div>:<div className=" temp2">
-                    <img src={useGetIcon(foreCastDay.weather[0].main.toLowerCase())} alt="" width={"48"}/>
-                    <h3>{foreCastDay.main.temp_max}°C</h3>
-                </div>}
-                {num==1?<div className="bottom">
-                    <div className="slice">
-                        <img style={{width:"1.1rem"}}src={umberlla} alt="" />
-                        <span style={{color:"gray"}}>{}%</span>
-                    </div>
-                    <div className="slice">
-                        <img style={{width:"1.1rem"}}src={wind} alt="" />
-                        <span style={{color:"gray"}}>{foreCastDay.wind.main}km/h</span>
-                    </div>
-                    <div className="slice">
-                        <img style={{width:"1.1rem"}}src={compass} alt="" />
-                        <span style={{color:"gray"}}>{}%</span>
-                    </div>
-                </div>
-                :<span style={{color:"gray"}}>{foreCastDay.main.temp_min}°C</span>}
-           </div>
-        </div>  
+        </div>
     )
 }
 
