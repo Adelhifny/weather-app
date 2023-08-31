@@ -11,23 +11,19 @@ function Home() {
         //api.openweathermap.org/data/2.5/forecast?q=${city}&appid=991a48e98dffd42bcb08fe109d1f4978&units=metric
         const resp = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=991a48e98dffd42bcb08fe109d1f4978&units=metric`);
         const data = await resp.json();
-        for(let i = 0;i < data.list.length;i++){
-            let hour = new Date(data.list[i].dt_txt).getHours();
-            if(i == 0 && hour == 12){
-                data.list.splice(i+1,3);
-            }
-            else if(i==0){
-                data.list.splice(i+1,7);
-            }
-            else if(hour == 0){
-                data.list.splice(i+1,7);
+        let arr = [[data.list[0]]];
+        let count = 0;
+        for(let i = 1;i < data.list.length;i++){
+            console.log(new Date(arr[count][0].dt_txt).getDate() == new Date(data.list[i].dt_txt).getDate());
+            if(new Date(arr[count][0].dt_txt).getDate() == new Date(data.list[i].dt_txt).getDate()){
+                arr[count].push(data.list[i]);
+            }else{
+                arr.push([data.list[i]]);
+                count++;
             }
         }
-        setForeCast(data);
+        setForeCast(arr);
     }
-    useEffect(()=>{
-        console.log(weather);
-    },[])
     if(Object.keys(weather).length > 0){
         return(
             <div className="home">
