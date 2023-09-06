@@ -19,7 +19,7 @@
 .email{
     background-color: var(--primColor);
     border-radius: 30px;
-    width: 40rem;
+    width: 100%;
     display: flex;
     padding: 0 1rem;
     flex-direction: row;
@@ -43,11 +43,12 @@
     cursor: pointer;
 }
 #subInput{
-    width: 33rem;
     background-color: var(--primColor);
     border: none;
     outline: none;
     color: white;
+    padding: 1rem 0rem;
+    width: 85%;
 }
 .mediaLinks{
     display: flex;
@@ -72,4 +73,17 @@
 .mediaLinks li a:hover svg{
     color: white;
     transition: 0.3s;
+}
+@media only screen and (max-width:768px){
+    .contactUs{
+        flex-direction: column;
+        height: 4.5rem;
+    }
+    #emailbtn{
+        padding: 0.6rem 0rem;
+        left: -0.5rem;
+    }
+    .email{
+        width: 100%;
+    }
 }

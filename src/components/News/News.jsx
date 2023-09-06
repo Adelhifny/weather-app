@@ -27,7 +27,7 @@ function News() {
                 <div className="trending">
                     <div className="title">
                         <h1>{trend.title}</h1>
-                        <h5 style={{color:"gray"}}>updated {trendDate} ago</h5>
+                        <h5 style={{color:"gray"}}>uploaded {trendDate} ago</h5>
                         <ul className="tags">
                             <li><a href="#" id="fire"><img width="20px" src={liveIcon}/>Live</a></li>
                             <li><a href="#">Trending</a></li>

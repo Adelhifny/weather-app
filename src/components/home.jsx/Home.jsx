@@ -18,7 +18,6 @@ function Home() {
         let arr = [[data.list[0]]];
         let count = 0;
         for(let i = 1;i < data.list.length;i++){
-            console.log(new Date(arr[count][0].dt_txt).getDate() == new Date(data.list[i].dt_txt).getDate());
             if(new Date(arr[count][0].dt_txt).getDate() == new Date(data.list[i].dt_txt).getDate()){
                 arr[count].push(data.list[i]);
             }else{

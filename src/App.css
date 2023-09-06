@@ -11,7 +11,7 @@
 .content{
   position: relative;
   top: 6rem;
-  height: 80%;
+  height: 100%;
   width: 100%;
 }
 @media screen and (max-width:765px){

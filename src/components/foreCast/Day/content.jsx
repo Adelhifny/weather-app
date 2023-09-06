@@ -1,6 +1,5 @@
 import useGetIcon from "../../../useGetIcon";
 import wind from "../../../assets/images/icon-wind.png"
-import L from "leaflet"
 import 'leaflet/dist/leaflet.css'
 import { MapContainer,TileLayer,useMap,Marker,Popup } from 'react-leaflet'
 import { useContext, useRef } from "react";
@@ -76,7 +75,7 @@ function Content({foreCastDay,time,handleTime}) {
                 <MapContainer
                 center={[coords.lat,coords.lon]}
                 zoom={5}
-                style={{width:"30vw",height:"30vh"}}>
+                className="map">
                     <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'

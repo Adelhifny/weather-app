@@ -152,7 +152,18 @@ img{
 #pressure:hover .pressureTt{
     visibility: visible;
 }
-#map { height: 180px; }
-
+/* style={{width:"30vw",height:"30vh"} */
+.map{
+    width: 30vw;
+    height: 30vh;
+}
 @media only screen and (max-width:768px){
+    .map{
+        width: 60vw;
+        height: 10vh;
+    }
+    .foreCast{
+        width: 90%;
+        font-size: 10.9px;
+    }
 }
