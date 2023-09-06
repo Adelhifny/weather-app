@@ -2,7 +2,6 @@
     position: relative;
     width: 100%;
     height: 100%;
-    margin-top: 6rem;
     background-color: var(--primColor);
     display: flex;
     flex-direction: column;
@@ -36,13 +35,13 @@
 }
 .searchBtn{
     position: relative;
-    right: 3rem;
+    right: 4rem;
     background-color: var(--secColor);
     color: white;
     border-radius: 30px;
     width: 3.5rem;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     cursor: pointer;
 }
 @media only screen and (max-width: 768px) {

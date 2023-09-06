@@ -11,14 +11,16 @@ function News() {
         const nowDate = new Date(Date.now());
         let trendDate;
         const date = new Date(trend.publishedAt);
-        if(nowDate.getMonth() == date.getMonth()){
-            trendDate = new Date(Date.now() - date).getDate() + " day";
-        }else if(nowDate.getUTCDate() == date.getUTCDate()){
+        if(nowDate.getHours() == date.getHours()){
+            trendDate = new Date(Date.now() - date).getMinutes() + " minutes";
+        }else if(nowDate.getDate() == date.getDate()){
             trendDate = new Date(Date.now() - date).getHours() + " hours";
-        }else if(nowDate.getFullYear() == date.getFullYear()){
+        }else if(new Date(Date.now() - date).getDate() <= 30){
+            trendDate = new Date(Date.now() - date).getDate() + " day";
+        }else if(nowDate.getFullYear() == date.getFullYear() && new Date(Date.now() - date).getDate() >= 30 ){
             trendDate = new Date(Date.now() - date).getMonth()  + " months";
         }else{
-            trendDate = new Date(Date.now() - date).getMinutes() + " minutes";
+            trendDate = (new Date(Date.now() - date).getFullYear() - 1970)  + "years";
         }
         return ( 
             <div className="preNews">

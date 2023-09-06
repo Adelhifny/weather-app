@@ -2,13 +2,17 @@ import './home.css'
 import { useEffect, useState } from 'react';
 import ForeCast from '../foreCast/foreCast';
 import useGetForeCast from '../../useGetForeCast';
+import useGetLocation from './useGetLocation';
+import coordsContext from '../../useLocationContext';
 
 function Home() {
     const [city,setCity] = useState("");
     const [foreCast,setForeCast] = useState({});
     const weather = useGetForeCast();
+    const [coords,setCoords] = useState({});
+    const currentCoords = useGetLocation(); 
     async function handleClick(){
-        //api.openweathermap.org/data/2.5/forecast?q=${city}&appid=991a48e98dffd42bcb08fe109d1f4978&units=metric
+        //https://api.api-ninjas.com/v1/geocoding?city=
         const resp = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=991a48e98dffd42bcb08fe109d1f4978&units=metric`);
         const data = await resp.json();
         let arr = [[data.list[0]]];
@@ -22,22 +26,30 @@ function Home() {
                 count++;
             }
         }
+        const resp1 = await fetch(`https://api.api-ninjas.com/v1/geocoding?city=${city}`,{
+            headers:{"X-Api-Key":"YzALOrQ4+thc04Bi7Oemfw==UYx4wFTVtxNz6MeI"}
+        });
+        const data1 = await resp1.json();
+        setCoords({lat:data1[0].latitude,lon:data1[0].longitude});
         setForeCast(arr);
     }
     if(Object.keys(weather).length > 0){
         return(
-            <div className="home">
-                <div className='img'>
-                    <div>
-                        <input type="text"className="searchBox"placeholder='  search by city'value={city}onChange={(e)=>{setCity(e.target.value);}}/>
-                        <a className='searchBtn' onClick={handleClick} >Find</a>
+            <coordsContext.Provider value={Object.keys(coords).length > 0?{...coords}:{...currentCoords}}>
+                <div className="home">
+                    <div className='img'>
+                        <div>
+                            <input type="text"className="searchBox"placeholder='  search by city'value={city}onChange={(e)=>{setCity(e.target.value);}}/>
+                            <a className='searchBtn' onClick={handleClick} >Find</a>
+                        </div>
                     </div>
+                    <ForeCast foreCast={Object.keys(foreCast).length > 0?foreCast:weather}/>
                 </div>
-                <ForeCast foreCast={Object.keys(foreCast).length > 0?foreCast:weather}/>
-            </div>
+            </coordsContext.Provider>
+            
         );
     }else{
-        return <div style={{height:"100%",backgroundColor:"#1e202b"}}>
+        return <div style={{height:"40rem",color:"white",backgroundColor:"#1e202b"}}>
         pending ---
     </div>
     };

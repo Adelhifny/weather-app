@@ -1,6 +1,5 @@
 .preNews{
     display: flex;
-    margin-top: 28rem;
     flex-direction: column;
     background-color: var(--primColor);
     color: white;
@@ -121,13 +120,14 @@
     width: 100%;
     height: 100%;
 }
-.content{
+.mewsCardContent{
     color: white;
     display: flex;
     flex-direction: column;
+    height: 100%;
     justify-content: space-around;
 }
-.content h5,.content h4{
+.mewsCardContent h5,.mewsCardContent h4{
     margin: 0;
 }
 @media only screen and (max-width: 768px){

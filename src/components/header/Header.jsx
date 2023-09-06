@@ -10,8 +10,8 @@ function Header() {
             <div className="icon">
                 <Link to="/"><img src={logo} alt="" /></Link>
                 <div className="name">
-                    <h4>Compony</h4>
-                    <h6>Name</h6>
+                    <h4>Weather Inc</h4>
+                    <h5>Our Planet</h5>
                 </div>
             </div>
             <ul className="links">
